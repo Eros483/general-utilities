@@ -129,7 +129,51 @@ The Reviewer must approve before any task is considered done.
 - Never put API calls directly in React components — they belong in services/
 - Always check /docs for relevant design documents before starting any task — if a design doc exists for what you're building, it takes precedence
 - If a design doc is missing but the task is significant enough to warrant one, flag it to the user before proceeding
-- Always update docs/features.json after completing any task — mark features as done, update test status, add new features if they were introduced
+- Always update docs/features.json after completing any task — mark features as done, update test status, add new features if they were introduced. follow the schema shape provided
+
+````bash
+// docs/features.json
+{
+  "project": "[project-name]",
+  "last_updated": "YYYY-MM-DD",
+  "summary": {
+    "total": 0,
+    "completed": 0,
+    "in_progress": 0,
+    "planned": 0,
+    "tests_passing": 0,
+    "tests_failing": 0,
+    "tests_missing": 0
+  },
+  "features": [
+    {
+      "id": "F001",
+      "name": "[Feature Name]",
+      "description": "[What it does and why it exists]",
+      "status": "planned",
+      "priority": "high",
+      "module": "backend/core",
+      "design_doc": "docs/[relevant-design-doc].md",
+      "tests": {
+        "status": "missing",
+        "files": [],
+        "notes": ""
+      },
+      "subtasks": [
+        {
+          "id": "F001-1",
+          "name": "[Subtask name]",
+          "status": "planned"
+        }
+      ],
+      "notes": "",
+      "added": "YYYY-MM-DD",
+      "completed": null
+    }
+  ]
+}
+````
+
 - If something feels out of scope, flag it rather than silently doing it
 
 ## Project-Specific Notes
