@@ -1,1 +1,1 @@
-# general-utilities
+generic utility files, used across codebases
