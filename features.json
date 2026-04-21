@@ -1,0 +1,39 @@
+{
+  "project": "[project-name]",
+  "last_updated": "YYYY-MM-DD",
+  "summary": {
+    "total": 0,
+    "completed": 0,
+    "in_progress": 0,
+    "planned": 0,
+    "tests_passing": 0,
+    "tests_failing": 0,
+    "tests_missing": 0
+  },
+  "features": [
+    {
+      "id": "F001",
+      "name": "[Feature Name]",
+      "description": "[What it does and why it exists]",
+      "status": "planned",
+      "priority": "high",
+      "module": "backend/core",
+      "design_doc": "docs/[relevant-design-doc].md",
+      "tests": {
+        "status": "missing",
+        "files": [],
+        "notes": ""
+      },
+      "subtasks": [
+        {
+          "id": "F001-1",
+          "name": "[Subtask name]",
+          "status": "planned"
+        }
+      ],
+      "notes": "",
+      "added": "YYYY-MM-DD",
+      "completed": null
+    }
+  ]
+}
