@@ -86,9 +86,49 @@ project-name/
 - Imports: sorted (isort compatible with black)
 - API routes are thin: validate input → call core → return output
 - core/ has zero knowledge of HTTP or FastAPI
-- Env vars are accessed exclusively via the config object (`from utils.config import config`) — never use `os.environ` directly
-- Config is a Pydantic BaseSettings class instantiated once in `backend/utils/config.py`
-- All logging uses the custom logger (`from utils.logger import logger`) — never use `print` or the stdlib `logging` module directly
+- Env vars are accessed exclusively via the config object (`from utils.config import config`) — never use `os.environ` directly. 
+
+- Config is a Pydantic BaseSettings class instantiated once in `backend/utils/config.py`. Initialise it as below configuration snippet.
+
+````
+from dotenv import load_dotenv
+from pydantic_settings import BaseSettings, SettingsConfigDict
+import os
+
+load_dotenv()
+
+class Settings(BaseSettings):
+    """
+    Central management for settings and configurations
+    Reads .env file
+    """
+
+settings = Settings()
+````
+
+- All logging uses the custom logger (`from utils.logger import logger`) — never use `print` or the stdlib `logging` module directly. Initialise it as below.
+
+````
+import logging
+import os
+from datetime import datetime
+
+LOGS_DIR="logs"
+os.makedirs(LOGS_DIR, exist_ok=True)
+
+LOG_FILE=os.path.join(LOGS_DIR, f"log_{datetime.now().strftime('%Y-%m-%d')}.log")
+
+logging.basicConfig(
+    filename=LOG_FILE,
+    format='%(asctime)s-%(levelname)s-%(message)s',
+    level=logging.INFO
+)
+
+def get_logger(name):
+    logger=logging.getLogger(name)
+    logger.setLevel(logging.INFO)
+    return logger
+````
 
 ### JavaScript (Frontend)
 - camelCase for variables and functions
