@@ -78,6 +78,7 @@ project-name/
 ## Conventions
 
 ### Python (Backend)
+- **Package manager: `uv`** — use `uv` for all dependency management (`uv add`, `uv run`, `uv sync`). Never use `pip` directly.
 - Every backend file starts with a header comment: `# ----- <4-5 word purpose> @ <file location> -----`
   - Example: `# ----- user authentication logic @ backend/core/auth.py -----`
 - Formatter: black (always)
@@ -99,6 +100,7 @@ project-name/
 - Commits: conventional commits format (feat:, fix:, chore:, docs:, test:, refactor:)
 - Env vars: never committed, always have a .env.example with keys but no values
 - API versioned from day one under /api/v1/
+- **README badges**: READMEs should include HTML shield badges (via [shields.io](https://shields.io)) for things like build status, version, license, and tech stack. Use raw HTML `<img>` tags, not Markdown image syntax, so badge layout and alignment can be controlled.
 
 ## Development Philosophy
 - TDD first: write the test, then the implementation. Never skip.
@@ -127,6 +129,7 @@ The Reviewer must approve before any task is considered done.
 - Never use `os.environ` directly — always use `from utils.config import config`
 - Never use `print` or stdlib `logging` — always use `from utils.logger import logger`
 - Never put API calls directly in React components — they belong in services/
+- Always use `uv` for Python package management — never invoke `pip` directly
 - Always check /docs for relevant design documents before starting any task — if a design doc exists for what you're building, it takes precedence
 - If a design doc is missing but the task is significant enough to warrant one, flag it to the user before proceeding
 - Always update docs/features.json after completing any task — mark features as done, update test status, add new features if they were introduced. follow the schema shape provided
